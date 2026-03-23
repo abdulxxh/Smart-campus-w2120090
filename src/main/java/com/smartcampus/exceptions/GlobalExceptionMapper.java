@@ -16,6 +16,11 @@ public class GlobalExceptionMapper implements ExceptionMapper<Throwable> {
 
     @Override
     public Response toResponse(Throwable exception) {
+        // If it's a standard JAX-RS framework exception (like 404, 415, 400), don't mask it
+        if (exception instanceof jakarta.ws.rs.WebApplicationException) {
+            return ((jakarta.ws.rs.WebApplicationException) exception).getResponse();
+        }
+        
         // Generate a tracking ID so server logs can be matched with client error
         String errorId = UUID.randomUUID().toString();
         
