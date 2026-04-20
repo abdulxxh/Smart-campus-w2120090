@@ -20,7 +20,11 @@ public class Main {
         final HttpServer server = startServer();
         System.out.println(String.format("Jersey app started with endpoints available at "
                 + "%sapi/v1\nHit Ctrl-C to stop it...", BASE_URI));
-        System.in.read();
+        try {
+            Thread.currentThread().join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         server.shutdownNow();
     }
 }

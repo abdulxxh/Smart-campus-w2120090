@@ -15,7 +15,7 @@ import java.util.Map;
 @Path("/rooms")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class RoomResource {
+public class SensorRoomResource {
 
     private Map<String, Room> rooms = InMemoryDataStore.getRooms();
 
